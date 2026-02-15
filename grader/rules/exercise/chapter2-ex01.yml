@@ -1,0 +1,22 @@
+
+exercise_id: chapter2/ex01
+mode: io
+entrypoint: taxform.py
+timeout_seconds: 5
+formatting:
+  money:
+    rule: max_2dp
+    penalty_per_extra_decimal: 2
+    min_points: 0
+    tips:
+      - "Use f-strings with {:.2f}"
+      - "Or: round(value, 2) before printing"
+io_tests:
+  - name: basic_sample
+    stdin: |
+      50000
+      2
+  - name: rounding_behavior
+    stdin: |
+      12345.67
+      0

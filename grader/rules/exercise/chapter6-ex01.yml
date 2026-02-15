@@ -1,0 +1,40 @@
+exercise_id: chapter6/ex01
+mode: function
+module_file: newton.py
+timeout_seconds: 5
+
+function_tests:
+  - name: newton
+    weight: 100
+    signature:
+      params: ['x']
+      returns: float
+    cases:
+      - name: sqrt_2
+        args: [2]
+        expected: 1.4142135623730951
+        tolerance: 0.0001
+      - name: sqrt_4
+        args: [4]
+        expected: 2.0
+        tolerance: 0.0001
+      - name: sqrt_9
+        args: [9]
+        expected: 3.0
+        tolerance: 0.0001
+      - name: sqrt_16
+        args: [16]
+        expected: 4.0
+        tolerance: 0.0001
+      - name: sqrt_25
+        args: [25]
+        expected: 5.0
+        tolerance: 0.0001
+      - name: sqrt_100
+        args: [100]
+        expected: 10.0
+        tolerance: 0.0001
+      - name: sqrt_0_25
+        args: [0.25]
+        expected: 0.5
+        tolerance: 0.0001

@@ -1,0 +1,37 @@
+exercise_id: chapter7/calculator
+mode: gui_structure
+module_file: calculator.py
+timeout_seconds: 5
+
+gui_structure_checks:
+  - widget_type: Tk
+    points: 10
+    description: "Main window (tk.Tk)"
+  
+  - widget_type: Entry
+    points: 15
+    min_count: 2
+    description: "Entry widgets for input (2 required)"
+  
+  - widget_type: Button
+    points: 25
+    min_count: 4
+    must_have_command: true
+    description: "Buttons (+, -, ×, ÷) with command handlers"
+  
+  - widget_type: Label
+    points: 15
+    description: "Label for displaying result"
+  
+  - method_call: mainloop
+    points: 15
+    description: "Event loop (.mainloop())"
+  
+  - method_call: pack
+    points: 10
+    or_method: grid
+    description: "Widget layout (.pack() or .grid())"
+  
+  - method_call: place
+    points: 10
+    description: "Alternative: .place() layout"

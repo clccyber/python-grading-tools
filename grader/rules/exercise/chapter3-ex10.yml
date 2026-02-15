@@ -1,0 +1,47 @@
+exercise_id: chapter3/ex10
+mode: table
+entrypoint: tidbit.py
+timeout_seconds: 5
+
+table_config:
+  expected_rows: 18       # For $200 purchase, takes 18 months to pay off
+  skip_header_lines: 1    # Header row
+  
+  columns:
+    - name: month
+      type: int
+      
+    - name: starting_balance
+      type: float
+      format:
+        decimals: 2
+        
+    - name: interest
+      type: float
+      format:
+        decimals: 2
+        
+    - name: principal
+      type: float
+      format:
+        decimals: 2
+        
+    - name: payment
+      type: float
+      format:
+        decimals: 2
+        
+    - name: ending_balance
+      type: float
+      format:
+        decimals: 2
+        
+  formatting_checks:
+    - type: header_present
+      pattern: "Month.*Balance.*Interest.*Principal.*Payment"
+      points: 10
+
+io_tests:
+  - name: example_case
+    stdin: |
+      200

@@ -1,0 +1,40 @@
+exercise_id: chapter4/ex04-decimal
+mode: text
+entrypoint: decimaltooctal.py
+timeout_seconds: 5
+
+text_tests:
+  - name: example_111
+    stdin: |
+      111
+    expected:
+      required_phrase: "157"
+      forbidden_phrase: "111"
+  
+  - name: simple_8
+    stdin: |
+      8
+    expected:
+      required_phrase: "10"
+      forbidden_phrase: "8"
+  
+  - name: zero
+    stdin: |
+      0
+    expected:
+      required_phrase: "0"
+      forbidden_phrase: ""
+  
+  - name: large_number
+    stdin: |
+      512
+    expected:
+      required_phrase: "1000"
+      forbidden_phrase: "512"
+  
+  - name: sixty_four
+    stdin: |
+      64
+    expected:
+      required_phrase: "100"
+      forbidden_phrase: "64"

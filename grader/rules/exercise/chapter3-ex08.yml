@@ -1,0 +1,21 @@
+exercise_id: chapter3/ex08
+mode: io
+entrypoint: gcd.py
+timeout_seconds: 5
+io_tests:
+  - name: example_5_15
+    stdin: |
+      5
+      15
+  - name: coprime_7_13
+    stdin: |
+      7
+      13
+  - name: same_number
+    stdin: |
+      12
+      12
+  - name: consecutive_99_100
+    stdin: |
+      99
+      100

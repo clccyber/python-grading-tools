@@ -1,0 +1,45 @@
+exercise_id: chapter4/ex01
+mode: text
+entrypoint: encrypt.py
+timeout_seconds: 5
+
+text_tests:
+  - name: hello_world_shift_3
+    stdin: |
+      Hello World!
+      3
+    expected:
+      required_phrase: "Khoor#Zruog$"
+      forbidden_phrase: "Hello World"
+  
+  - name: simple_shift_1
+    stdin: |
+      ABC
+      1
+    expected:
+      required_phrase: "BCD"
+      forbidden_phrase: "ABC"
+  
+  - name: wrap_around_shift_5
+    stdin: |
+      XYZ
+      5
+    expected:
+      required_phrase: "]^_"
+      forbidden_phrase: "XYZ"
+  
+  - name: negative_shift
+    stdin: |
+      DEF
+      -2
+    expected:
+      required_phrase: "BCD"
+      forbidden_phrase: "DEF"
+  
+  - name: numbers_and_special
+    stdin: |
+      Test123!
+      4
+    expected:
+      required_phrase: "Xiwx567%"
+      forbidden_phrase: "Test123"

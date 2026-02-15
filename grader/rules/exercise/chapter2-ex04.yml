@@ -1,0 +1,12 @@
+
+exercise_id: chapter2/ex04
+mode: io
+entrypoint: sphere.py
+timeout_seconds: 5
+io_tests:
+  - name: r12
+    stdin: |
+      12
+  - name: r5_5
+    stdin: |
+      5.5

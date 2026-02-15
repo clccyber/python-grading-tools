@@ -1,0 +1,36 @@
+exercise_id: chapter5/ex06
+mode: function
+module_file: convert.py
+timeout_seconds: 5
+
+function_tests:
+  - name: decimalToRep
+    weight: 100
+    signature:
+      params: ['decimal', 'base']
+      returns: str
+    cases:
+      - name: octal_8
+        args: [8, 8]
+        expected: "10"
+      - name: hex_16
+        args: [16, 16]
+        expected: "10"
+      - name: hex_255
+        args: [255, 16]
+        expected: "FF"
+      - name: binary_10
+        args: [10, 2]
+        expected: "1010"
+      - name: hex_26
+        args: [26, 16]
+        expected: "1A"
+      - name: octal_111
+        args: [111, 8]
+        expected: "157"
+      - name: zero
+        args: [0, 10]
+        expected: "0"
+      - name: base_3
+        args: [15, 3]
+        expected: "120"

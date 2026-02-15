@@ -1,0 +1,24 @@
+
+exercise_id: chapter2/ex10
+mode: io
+entrypoint: employeepay.py
+timeout_seconds: 5
+formatting:
+  money:
+    rule: max_2dp
+    penalty_per_extra_decimal: 2
+    min_points: 0
+    tips:
+      - "Use f-strings with {:.2f}"
+      - "Or: round(value, 2)"
+io_tests:
+  - name: sample
+    stdin: |
+      2000
+      8
+      2
+  - name: hourly
+    stdin: |
+      15.5
+      40
+      5

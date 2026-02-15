@@ -1,0 +1,42 @@
+exercise_id: chapter6/ex03
+mode: function
+module_file: testsort.py
+timeout_seconds: 5
+
+function_tests:
+  - name: isSorted
+    weight: 100
+    signature:
+      params: ['data']
+      returns: bool
+    cases:
+      - name: empty_list
+        args: [[]]
+        expected: true
+      - name: single_element
+        args: [[5]]
+        expected: true
+      - name: sorted_ascending
+        args: [[1, 2, 3, 4, 5]]
+        expected: true
+      - name: sorted_with_duplicates
+        args: [[1, 2, 2, 3, 4]]
+        expected: true
+      - name: all_same
+        args: [[5, 5, 5, 5]]
+        expected: true
+      - name: unsorted_descending
+        args: [[5, 4, 3, 2, 1]]
+        expected: false
+      - name: unsorted_mixed
+        args: [[1, 3, 2, 4]]
+        expected: false
+      - name: two_elements_sorted
+        args: [[1, 2]]
+        expected: true
+      - name: two_elements_unsorted
+        args: [[2, 1]]
+        expected: false
+      - name: mostly_sorted
+        args: [[1, 2, 3, 5, 4]]
+        expected: false

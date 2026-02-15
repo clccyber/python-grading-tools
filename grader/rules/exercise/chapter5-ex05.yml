@@ -1,0 +1,36 @@
+exercise_id: chapter5/ex05
+mode: function
+module_file: convert.py
+timeout_seconds: 5
+
+function_tests:
+  - name: repToDecimal
+    weight: 100
+    signature:
+      params: ['rep', 'base']
+      returns: int
+    cases:
+      - name: octal_10
+        args: ["10", 8]
+        expected: 8
+      - name: hex_10
+        args: ["10", 16]
+        expected: 16
+      - name: hex_FF
+        args: ["FF", 16]
+        expected: 255
+      - name: hex_ff_lowercase
+        args: ["ff", 16]
+        expected: 255
+      - name: binary_1010
+        args: ["1010", 2]
+        expected: 10
+      - name: hex_1A
+        args: ["1A", 16]
+        expected: 26
+      - name: octal_157
+        args: ["157", 8]
+        expected: 111
+      - name: base_3
+        args: ["120", 3]
+        expected: 15

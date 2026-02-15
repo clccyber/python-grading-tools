@@ -1,0 +1,12 @@
+
+exercise_id: chapter2/ex07
+mode: io
+entrypoint: minutes.py
+timeout_seconds: 5
+io_tests:
+  - name: sample
+    stdin: |
+      23
+  - name: big
+    stdin: |
+      100

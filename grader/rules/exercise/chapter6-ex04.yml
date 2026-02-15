@@ -1,0 +1,37 @@
+exercise_id: chapter6/ex04
+mode: text
+entrypoint: recognizer.py
+timeout_seconds: 5
+
+text_tests:
+  - name: simple_sentence
+    stdin: |
+      The boy saw the girl
+      
+    expected:
+      required_phrase: "Ok, grammatically correct"
+      forbidden_phrase: "Sorry"
+  
+  - name: with_adjective
+    stdin: |
+      The girl hit the red ball with a bat
+      
+    expected:
+      required_phrase: "Ok, grammatically correct"
+      forbidden_phrase: "Sorry"
+  
+  - name: with_conjunction
+    stdin: |
+      The boy saw the girl and the girl hit the red ball with a bat
+      
+    expected:
+      required_phrase: "Ok, grammatically correct"
+      forbidden_phrase: "Sorry"
+  
+  - name: no_prepositional_phrase
+    stdin: |
+      The boy saw the girl
+      
+    expected:
+      required_phrase: "Ok, grammatically correct"
+      forbidden_phrase: "Sorry"

@@ -1,0 +1,40 @@
+exercise_id: chapter4/ex04-octal
+mode: text
+entrypoint: octaltodecimal.py
+timeout_seconds: 5
+
+text_tests:
+  - name: example_157
+    stdin: |
+      157
+    expected:
+      required_phrase: "111"
+      forbidden_phrase: "157"
+  
+  - name: simple_10
+    stdin: |
+      10
+    expected:
+      required_phrase: "8"
+      forbidden_phrase: "10"
+  
+  - name: zero
+    stdin: |
+      0
+    expected:
+      required_phrase: "0"
+      forbidden_phrase: ""
+  
+  - name: large_number
+    stdin: |
+      1000
+    expected:
+      required_phrase: "512"
+      forbidden_phrase: "1000"
+  
+  - name: one_hundred
+    stdin: |
+      100
+    expected:
+      required_phrase: "64"
+      forbidden_phrase: "100"

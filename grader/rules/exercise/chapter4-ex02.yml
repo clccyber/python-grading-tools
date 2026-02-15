@@ -1,0 +1,45 @@
+exercise_id: chapter4/ex02
+mode: text
+entrypoint: decrypt.py
+timeout_seconds: 5
+
+text_tests:
+  - name: hello_world_shift_3
+    stdin: |
+      Khoor#Zruog$
+      3
+    expected:
+      required_phrase: "Hello World!"
+      forbidden_phrase: "Khoor"
+  
+  - name: simple_shift_1
+    stdin: |
+      BCD
+      1
+    expected:
+      required_phrase: "ABC"
+      forbidden_phrase: "BCD"
+  
+  - name: wrap_around_shift_5
+    stdin: |
+      ]^_
+      5
+    expected:
+      required_phrase: "XYZ"
+      forbidden_phrase: "]^_"
+  
+  - name: negative_shift
+    stdin: |
+      BCD
+      -2
+    expected:
+      required_phrase: "DEF"
+      forbidden_phrase: "BCD"
+  
+  - name: numbers_and_special
+    stdin: |
+      Xiwx567%
+      4
+    expected:
+      required_phrase: "Test123!"
+      forbidden_phrase: "Xiwx"

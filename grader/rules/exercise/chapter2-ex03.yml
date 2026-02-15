@@ -1,0 +1,22 @@
+
+exercise_id: chapter2/ex03
+mode: io
+entrypoint: fivestar.py
+timeout_seconds: 5
+formatting:
+  money:
+    rule: max_2dp
+    penalty_per_extra_decimal: 2
+    min_points: 0
+    tips:
+      - "Use f-strings with {:.2f}"
+      - "Or: round(value, 2)"
+io_tests:
+  - name: sample
+    stdin: |
+      4
+      4
+  - name: mix
+    stdin: |
+      7
+      2

@@ -1,0 +1,14 @@
+
+exercise_id: chapter2/ex06
+mode: io
+entrypoint: momentum.py
+timeout_seconds: 5
+io_tests:
+  - name: sample
+    stdin: |
+      250
+      12
+  - name: var
+    stdin: |
+      10
+      3.3

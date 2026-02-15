@@ -1,0 +1,24 @@
+exercise_id: chapter3/ex09
+mode: io
+entrypoint: sum.py
+timeout_seconds: 5
+
+io_tests:
+  - name: three_numbers
+    stdin: |
+      1
+      2
+      3
+      
+  - name: five_numbers
+    stdin: |
+      10
+      20
+      30
+      40
+      50
+      
+  - name: single_number
+    stdin: |
+      42
+      

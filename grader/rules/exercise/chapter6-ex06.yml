@@ -1,0 +1,59 @@
+exercise_id: chapter6/ex06
+mode: function
+module_file: testmyrange.py
+timeout_seconds: 5
+
+function_tests:
+  - name: myRange
+    weight: 100
+    signature:
+      params: ['start', 'stop', 'step']
+      returns: list
+    cases:
+      # Single argument - stop only
+      - name: single_arg_10
+        args: [10]
+        expected: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+      - name: single_arg_5
+        args: [5]
+        expected: [0, 1, 2, 3, 4]
+      - name: single_arg_0
+        args: [0]
+        expected: []
+      
+      # Two arguments - start and stop
+      - name: two_args_1_10
+        args: [1, 10]
+        expected: [1, 2, 3, 4, 5, 6, 7, 8, 9]
+      - name: two_args_5_10
+        args: [5, 10]
+        expected: [5, 6, 7, 8, 9]
+      - name: two_args_same
+        args: [5, 5]
+        expected: []
+      - name: two_args_reversed
+        args: [10, 5]
+        expected: []
+      
+      # Three arguments - start, stop, step
+      - name: three_args_0_10_2
+        args: [0, 10, 2]
+        expected: [0, 2, 4, 6, 8]
+      - name: three_args_1_10_3
+        args: [1, 10, 3]
+        expected: [1, 4, 7]
+      - name: three_args_negative_step
+        args: [10, 0, -1]
+        expected: [10, 9, 8, 7, 6, 5, 4, 3, 2, 1]
+      - name: three_args_negative_step_2
+        args: [10, 0, -2]
+        expected: [10, 8, 6, 4, 2]
+      - name: three_args_zero_step
+        args: [0, 10, 0]
+        expected: []
+      - name: three_args_wrong_direction_pos
+        args: [10, 0, 1]
+        expected: []
+      - name: three_args_wrong_direction_neg
+        args: [0, 10, -1]
+        expected: []

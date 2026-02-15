@@ -1,0 +1,63 @@
+exercise_id: chapter6/ex02
+mode: function
+module_file: newton.py
+timeout_seconds: 5
+
+function_tests:
+  - name: improveEstimate
+    weight: 30
+    signature:
+      params: ['x', 'estimate']
+      returns: float
+    cases:
+      - name: improve_sqrt_2
+        args: [2, 1.5]
+        expected: 1.4166666666666667
+        tolerance: 0.0001
+      - name: improve_sqrt_9
+        args: [9, 3.5]
+        expected: 3.035714285714286
+        tolerance: 0.0001
+      - name: improve_sqrt_4
+        args: [4, 2.5]
+        expected: 2.05
+        tolerance: 0.0001
+  
+  - name: limitReached
+    weight: 30
+    signature:
+      params: ['x', 'estimate']
+      returns: bool
+    cases:
+      - name: limit_not_reached
+        args: [2, 1.5]
+        expected: false
+      - name: limit_reached
+        args: [4, 2.0]
+        expected: true
+      - name: limit_reached_close
+        args: [9, 3.0]
+        expected: true
+  
+  - name: newton
+    weight: 40
+    signature:
+      params: ['x']
+      returns: float
+    cases:
+      - name: sqrt_2
+        args: [2]
+        expected: 1.4142135623730951
+        tolerance: 0.0001
+      - name: sqrt_4
+        args: [4]
+        expected: 2.0
+        tolerance: 0.0001
+      - name: sqrt_9
+        args: [9]
+        expected: 3.0
+        tolerance: 0.0001
+      - name: sqrt_25
+        args: [25]
+        expected: 5.0
+        tolerance: 0.0001

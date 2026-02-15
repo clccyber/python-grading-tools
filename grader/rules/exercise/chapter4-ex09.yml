@@ -1,0 +1,81 @@
+exercise_id: chapter4/ex09
+mode: file_io
+entrypoint: numberlines.py
+timeout_seconds: 5
+
+file_io_tests:
+  - name: simple_three_lines
+    mode: interactive
+    stdin: |
+      input.txt
+      output.txt
+    input_files:
+      input.txt: |
+        This is the first line of text.
+        This is the second line.
+        And the third.
+    output_files:
+      output.txt: |
+           1> This is the first line of text.
+           2> This is the second line.
+           3> And the third.
+  
+  - name: single_line
+    mode: interactive
+    stdin: |
+      one.txt
+      numbered.txt
+    input_files:
+      one.txt: "Just one line"
+    output_files:
+      numbered.txt: "   1> Just one line"
+  
+  - name: ten_lines
+    mode: interactive
+    stdin: |
+      ten.txt
+      result.txt
+    input_files:
+      ten.txt: |
+        Line one
+        Line two
+        Line three
+        Line four
+        Line five
+        Line six
+        Line seven
+        Line eight
+        Line nine
+        Line ten
+    output_files:
+      result.txt: |
+           1> Line one
+           2> Line two
+           3> Line three
+           4> Line four
+           5> Line five
+           6> Line six
+           7> Line seven
+           8> Line eight
+           9> Line nine
+          10> Line ten
+  
+  - name: hundred_lines
+    mode: interactive
+    stdin: |
+      big.txt
+      numbered_big.txt
+    input_files:
+      big.txt: |
+        Line 1
+        Line 2
+        Line 98
+        Line 99
+        Line 100
+    output_files:
+      numbered_big.txt: |
+           1> Line 1
+           2> Line 2
+          98> Line 98
+          99> Line 99
+         100> Line 100

@@ -1,0 +1,14 @@
+exercise_id: chapter8/ex06
+mode: function
+module_file: grayscale.py
+timeout_seconds: 10
+
+function_tests:
+  - name: grayscale
+    weight: 100
+    signature:
+      params: ['image']
+    image_validation:
+      type: grayscale
+      test_image: smokey.gif
+      sample_pixels: 100

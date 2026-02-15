@@ -1,0 +1,14 @@
+exercise_id: chapter3/ex06
+mode: io
+entrypoint: leibniz.py
+timeout_seconds: 5
+io_tests:
+  - name: five_iterations
+    stdin: |
+      5
+  - name: ten_iterations
+    stdin: |
+      10
+  - name: hundred_iterations
+    stdin: |
+      100

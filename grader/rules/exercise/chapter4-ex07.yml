@@ -1,0 +1,26 @@
+exercise_id: chapter4/ex07
+mode: text
+entrypoint: decrypt.py
+timeout_seconds: 5
+
+text_tests:
+  - name: hello_world
+    stdin: |
+      0010011 1001101 1011011 1011011 1100001 000011 0110001 1100001 1100111 1011011 1001011 000101
+    expected:
+      required_phrase: "Hello World!"
+      forbidden_phrase: "0010011"
+  
+  - name: simple_abc
+    stdin: |
+      0001001 0001011 0001101
+    expected:
+      required_phrase: "ABC"
+      forbidden_phrase: "0001001"
+  
+  - name: single_char
+    stdin: |
+      0110011
+    expected:
+      required_phrase: "X"
+      forbidden_phrase: "0110011"

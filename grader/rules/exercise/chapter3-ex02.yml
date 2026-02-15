@@ -1,0 +1,25 @@
+exercise_id: chapter3/ex02
+mode: text
+entrypoint: right.py
+timeout_seconds: 5
+io_tests:
+  - name: classic_345
+    stdin: |
+      3
+      4
+      5
+  - name: scaled_6_8_10
+    stdin: |
+      6
+      8
+      10
+  - name: not_right
+    stdin: |
+      5
+      5
+      5
+  - name: order_matters
+    stdin: |
+      5
+      3
+      4

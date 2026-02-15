@@ -1,0 +1,21 @@
+exercise_id: chapter1/ex05
+mode: io
+entrypoint: cuboid.py
+timeout_seconds: 5
+
+io_tests:
+  - name: sample
+    stdin: |
+      6
+      8
+      9
+  - name: cube
+    stdin: |
+      5
+      5
+      5
+  - name: decimal
+    stdin: |
+      2.5
+      3.0
+      4.0

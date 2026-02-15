@@ -1,0 +1,12 @@
+
+exercise_id: chapter2/ex08
+mode: io
+entrypoint: lightyear.py
+timeout_seconds: 5
+io_tests:
+  - name: sample
+    stdin: |
+      12
+  - name: one
+    stdin: |
+      1

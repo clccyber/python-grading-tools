@@ -1,0 +1,7 @@
+exercise_id: chapter3/ex11
+mode: lucky_sevens
+entrypoint: sevens.py
+timeout_seconds: 10  # Dice games can run many iterations
+
+# Test cases with seeded RNG are hardcoded in harness_lucky_sevens.py
+# Seeds make dice rolls deterministic for testing

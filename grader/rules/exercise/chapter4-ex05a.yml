@@ -1,0 +1,40 @@
+exercise_id: chapter4/ex05-left
+mode: text
+entrypoint: shiftleft.py
+timeout_seconds: 5
+
+text_tests:
+  - name: example_0001
+    stdin: |
+      0001
+    expected:
+      required_phrase: "0010"
+      forbidden_phrase: "0001"
+  
+  - name: wrap_around_1000
+    stdin: |
+      1000
+    expected:
+      required_phrase: "0001"
+      forbidden_phrase: "1000"
+  
+  - name: multi_wrap_1011
+    stdin: |
+      1011
+    expected:
+      required_phrase: "0111"
+      forbidden_phrase: "1011"
+  
+  - name: all_ones
+    stdin: |
+      1111
+    expected:
+      required_phrase: "1111"
+      forbidden_phrase: ""
+  
+  - name: alternating
+    stdin: |
+      1010
+    expected:
+      required_phrase: "0101"
+      forbidden_phrase: "1010"

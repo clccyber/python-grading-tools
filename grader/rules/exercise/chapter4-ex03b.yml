@@ -1,0 +1,41 @@
+exercise_id: chapter4/ex03-decrypt
+mode: file_io
+entrypoint: decrypt.py
+timeout_seconds: 5
+
+file_io_tests:
+  - name: hello_world_shift_3
+    mode: cmdline
+    cmdline_args: ["input.txt", "output.txt", "3"]
+    input_files:
+      input.txt: "Khoor#Zruog$"
+    output_files:
+      output.txt: "Hello World!"
+  
+  - name: multiline_shift_1
+    mode: cmdline
+    cmdline_args: ["cipher.txt", "plain.txt", "1"]
+    input_files:
+      cipher.txt: |
+        BCD
+        EFG
+        HIJ
+    output_files:
+      plain.txt: |
+        ABC
+        DEF
+        GHI
+  
+  - name: long_text_shift_5
+    mode: cmdline
+    cmdline_args: ["encoded.txt", "decoded.txt", "5"]
+    input_files:
+      encoded.txt: |
+        Ymnx%nx%f%qtsljw%unjhj%tk%yjcy3
+        Ny%mfx%rzqynuqj%qnsjx3
+        Yjxynsl%Hfjxfw%hnumjw%ts%knqjx3
+    output_files:
+      decoded.txt: |
+        This is a longer piece of text.
+        It has multiple lines.
+        Testing Caesar cipher on files.

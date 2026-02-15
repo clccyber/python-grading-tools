@@ -1,0 +1,12 @@
+
+exercise_id: chapter2/ex09
+mode: io
+entrypoint: klickstonauts.py
+timeout_seconds: 5
+io_tests:
+  - name: sample
+    stdin: |
+      1234
+  - name: round
+    stdin: |
+      10

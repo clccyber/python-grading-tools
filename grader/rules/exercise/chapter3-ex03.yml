@@ -1,0 +1,10 @@
+exercise_id: chapter3/ex03
+mode: guessing_game
+entrypoint: guess.py
+timeout_seconds: 5
+
+# Test cases are hardcoded in harness_guessing.py
+# They test:
+# - Binary search strategy (guessing at midpoint)
+# - Finding number in optimal guesses (ceil(log2(range)))
+# - Cheating detection (contradictory hints)

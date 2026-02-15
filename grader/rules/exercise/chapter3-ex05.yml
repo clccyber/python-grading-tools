@@ -1,0 +1,17 @@
+exercise_id: chapter3/ex05
+mode: io
+entrypoint: population.py
+timeout_seconds: 5
+io_tests:
+  - name: example_case
+    stdin: |
+      10
+      2
+      2
+      6
+  - name: simple_double
+    stdin: |
+      100
+      2
+      1
+      3

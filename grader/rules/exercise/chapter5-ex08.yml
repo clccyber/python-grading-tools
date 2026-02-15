@@ -1,0 +1,46 @@
+exercise_id: chapter5/ex08
+mode: file_io
+entrypoint: concordance.py
+timeout_seconds: 5
+
+file_io_tests:
+  - name: example_fruits
+    mode: interactive
+    stdin: |
+      fruits.txt
+    input_files:
+      fruits.txt: |
+        apple banana cherry
+        apple date elderberry
+        banana cherry apple
+        date elderberry
+    expected_stdout: |
+      apple 3
+      banana 2
+      cherry 2
+      date 2
+      elderberry 2
+  
+  - name: simple_count
+    mode: interactive
+    stdin: |
+      words.txt
+    input_files:
+      words.txt: |
+        hello world
+        hello hello
+        world
+    expected_stdout: |
+      hello 3
+      world 2
+  
+  - name: alphabetical_order
+    mode: interactive
+    stdin: |
+      test.txt
+    input_files:
+      test.txt: "zebra apple cat apple zebra zebra"
+    expected_stdout: |
+      apple 2
+      cat 1
+      zebra 3

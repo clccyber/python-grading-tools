@@ -1,0 +1,61 @@
+exercise_id: chapter4/ex08
+mode: file_io
+entrypoint: copyfile.py
+timeout_seconds: 5
+
+file_io_tests:
+  - name: simple_text
+    mode: interactive
+    stdin: |
+      input.txt
+      output.txt
+    input_files:
+      input.txt: |
+        Hello World!
+        This is a test file.
+        Line three.
+    output_files:
+      output.txt: |
+        Hello World!
+        This is a test file.
+        Line three.
+  
+  - name: single_line
+    mode: interactive
+    stdin: |
+      source.txt
+      dest.txt
+    input_files:
+      source.txt: "Just one line"
+    output_files:
+      dest.txt: "Just one line"
+  
+  - name: empty_file
+    mode: interactive
+    stdin: |
+      empty.txt
+      copy.txt
+    input_files:
+      empty.txt: ""
+    output_files:
+      copy.txt: ""
+  
+  - name: multiline_content
+    mode: interactive
+    stdin: |
+      data.txt
+      result.txt
+    input_files:
+      data.txt: |
+        Line 1
+        Line 2
+        Line 3
+        Line 4
+        Line 5
+    output_files:
+      result.txt: |
+        Line 1
+        Line 2
+        Line 3
+        Line 4
+        Line 5

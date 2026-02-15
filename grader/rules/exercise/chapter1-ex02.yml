@@ -1,0 +1,14 @@
+exercise_id: chapter1/ex02
+mode: io
+entrypoint: rectangle.py
+timeout_seconds: 5
+
+io_tests:
+  - name: sample
+    stdin: |
+      10
+      5
+  - name: decimal
+    stdin: |
+      3.5
+      2.0

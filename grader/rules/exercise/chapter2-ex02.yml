@@ -1,0 +1,12 @@
+
+exercise_id: chapter2/ex02
+mode: io
+entrypoint: cube.py
+timeout_seconds: 5
+io_tests:
+  - name: edge_5
+    stdin: |
+      5
+  - name: edge_12
+    stdin: |
+      12

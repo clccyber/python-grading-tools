@@ -1,0 +1,26 @@
+exercise_id: chapter4/ex06
+mode: text
+entrypoint: encrypt.py
+timeout_seconds: 5
+
+text_tests:
+  - name: hello_world
+    stdin: |
+      Hello World!
+    expected:
+      required_phrase: "0010011 1001101 1011011 1011011 1100001 000011 0110001 1100001 1100111 1011011 1001011 000101"
+      forbidden_phrase: "Hello"
+  
+  - name: simple_abc
+    stdin: |
+      ABC
+    expected:
+      required_phrase: "0001001 0001011 0001101"
+      forbidden_phrase: "ABC"
+  
+  - name: single_char
+    stdin: |
+      X
+    expected:
+      required_phrase: "0110011"
+      forbidden_phrase: "X"

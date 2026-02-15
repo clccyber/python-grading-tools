@@ -1,0 +1,47 @@
+exercise_id: chapter5/ex07
+mode: file_io
+entrypoint: unique.py
+timeout_seconds: 5
+
+file_io_tests:
+  - name: simple_fruits
+    mode: interactive
+    stdin: |
+      fruits.txt
+    input_files:
+      fruits.txt: |
+        apple banana cherry
+        apple date elderberry
+        banana cherry
+    expected_stdout: |
+      apple
+      banana
+      cherry
+      date
+      elderberry
+  
+  - name: with_duplicates
+    mode: interactive
+    stdin: |
+      words.txt
+    input_files:
+      words.txt: |
+        hello world
+        hello python
+        world programming
+    expected_stdout: |
+      hello
+      programming
+      python
+      world
+  
+  - name: single_words
+    mode: interactive
+    stdin: |
+      single.txt
+    input_files:
+      single.txt: "zebra apple cat"
+    expected_stdout: |
+      apple
+      cat
+      zebra

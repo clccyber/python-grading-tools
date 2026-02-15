@@ -1,0 +1,15 @@
+exercise_id: chapter3/ex04
+mode: io
+entrypoint: bouncy.py
+timeout_seconds: 5
+io_tests:
+  - name: example_case
+    stdin: |
+      25
+      .5
+      3
+  - name: simple_case
+    stdin: |
+      10
+      0.6
+      1

@@ -1,0 +1,37 @@
+exercise_id: chapter3/ex07
+mode: table
+entrypoint: salary.py
+timeout_seconds: 5
+
+table_config:
+  expected_rows: 10
+  skip_header_lines: 2    # "Year   Salary" + "-------------"
+  
+  columns:
+    - name: year
+      type: int
+      
+    - name: salary
+      type: float
+      format:
+        decimals: 2
+        
+  formatting_checks:
+    - type: header_present
+      pattern: "Year.*Salary"
+      points: 10
+    - type: separator_line
+      pattern: "^-+$"
+      points: 10
+
+io_tests:
+  - name: standard_case
+    stdin: |
+      30000
+      2
+      10
+  - name: higher_increase
+    stdin: |
+      40000
+      5
+      5
