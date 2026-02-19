@@ -7,6 +7,68 @@ from .utils import run_subprocess
 def half_up(n):
     return int(n + 0.5)
 
+def has_main_block(file_path):
+    """Check if file has 'if __name__ == "__main__"' block"""
+    try:
+        with open(file_path, 'r', encoding='utf-8', errors='ignore') as f:
+            content = f.read()
+            return '__name__' in content and '__main__' in content
+    except:
+        return False
+
+def find_student_python_file(student_dir, config):
+    """
+    Find the student's Python file to grade.
+    
+    Priority:
+    1. Check config['target_file'] if specified (NEW)
+    2. Check config['module_file'] if specified (LEGACY)
+    3. Fall back to heuristics:
+       - If only one .py file → use it
+       - If multiple with __main__ → use newest
+       - If multiple without __main__ → use newest
+    
+    Returns:
+        Path to Python file, or None if not found
+    """
+    student_path = Path(student_dir)
+    
+    # NEW: Check if YAML specifies target_file
+    target_file = config.get('target_file')
+    if target_file:
+        specified_path = student_path / target_file
+        if specified_path.exists():
+            return specified_path
+        else:
+            # Log warning but continue to fallback
+            print(f"  Warning: Specified target_file '{target_file}' not found, using fallback detection")
+    
+    # LEGACY: Check module_file (old configs)
+    module_file = config.get('module_file')
+    if module_file:
+        module_path = student_path / module_file
+        if module_path.exists():
+            return module_path
+    
+    # FALLBACK: Heuristic detection
+    py_files = list(student_path.glob('*.py'))
+    
+    if not py_files:
+        return None
+    
+    if len(py_files) == 1:
+        return py_files[0]
+    
+    # Multiple files - check for __main__ blocks
+    main_files = [f for f in py_files if has_main_block(f)]
+    
+    if main_files:
+        # Pick newest among files with __main__
+        return max(main_files, key=lambda f: f.stat().st_mtime)
+    
+    # No __main__ blocks - pick newest overall
+    return max(py_files, key=lambda f: f.stat().st_mtime)
+
 def grade_functions(cfg, student_path):
     """
     Grade exercises by importing student module and testing functions directly.
@@ -26,7 +88,6 @@ def grade_functions(cfg, student_path):
     """
     
     ex_id = cfg.get('exercise_id')
-    module_file = cfg.get('module_file')
     function_tests = cfg.get('function_tests', [])
     
     if not function_tests:
@@ -35,16 +96,19 @@ def grade_functions(cfg, student_path):
     notes = []
     tasks = []
     
-    # Try to import student module
-    module_path = Path(student_path) / module_file
-    if not module_path.exists():
-        notes.append(f"File '{module_file}' not found in student directory")
+    # Find student Python file using new failsafe logic
+    module_path = find_student_python_file(student_path, cfg)
+    
+    if not module_path:
+        notes.append(f"No Python file found in student directory")
         return {
             'summary': {'exercise_id': ex_id, 'score': 0, 'raw_earned': 0, 'raw_total': 100},
             'tasks': [],
             'notes': notes,
             'formatting_issues': {}
         }
+    
+    module_file = module_path.name
     
     # Import the module
     try:
@@ -215,9 +279,10 @@ def grade_functions(cfg, student_path):
                     failed += 1
         
         # Calculate score for this function
-        if len(test_cases) > 0:
-            task['earned'] = (passed / len(test_cases)) * weight
-            task['status'] = 'pass' if passed == len(test_cases) else ('partial' if passed > 0 else 'fail')
+        total_tests = passed + failed
+        if total_tests > 0:
+            task['earned'] = int((passed / total_tests) * weight)
+            task['status'] = 'pass' if failed == 0 else ('partial' if passed > 0 else 'fail')
         
         tasks.append(task)
     
