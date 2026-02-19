@@ -49,10 +49,11 @@ Your program should:
 **Example:**
 ```
 Enter the number of years: 12
-Light travels 113529600000000000 meters in 12 years.
-```
+In 12 years, Light travels 113529600000000000 meters. 
 
 **Note:** The result is HUGE (15+ digits for 12 years)
+--The years must come before the number of meters.
+**--This is not the same order as in the output requested by cengage**
 
 ---
 

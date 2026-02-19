@@ -21,9 +21,10 @@ def find_student_python_file(student_dir, config):
     Find the student's Python file to grade.
     
     Priority:
-    1. Check config['target_file'] if specified (NEW)
-    2. Check config['module_file'] if specified (LEGACY)
-    3. Fall back to heuristics:
+    1. Check config['entrypoint'] if specified (STANDARD)
+    2. Check config['target_file'] if specified (ALIAS)
+    3. Check config['module_file'] if specified (LEGACY)
+    4. Fall back to heuristics:
        - If only one .py file → use it
        - If multiple with __main__ → use newest
        - If multiple without __main__ → use newest
@@ -33,14 +34,23 @@ def find_student_python_file(student_dir, config):
     """
     student_path = Path(student_dir)
     
-    # NEW: Check if YAML specifies target_file
+    # STANDARD: Check entrypoint (most configs use this)
+    entrypoint = config.get('entrypoint')
+    if entrypoint:
+        specified_path = student_path / entrypoint
+        if specified_path.exists():
+            return specified_path
+        else:
+            # Log warning but continue to fallback
+            print(f"  Warning: Specified entrypoint '{entrypoint}' not found, using fallback detection")
+    
+    # ALIAS: Check target_file (alternative name)
     target_file = config.get('target_file')
     if target_file:
         specified_path = student_path / target_file
         if specified_path.exists():
             return specified_path
         else:
-            # Log warning but continue to fallback
             print(f"  Warning: Specified target_file '{target_file}' not found, using fallback detection")
     
     # LEGACY: Check module_file (old configs)
