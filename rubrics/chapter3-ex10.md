@@ -180,3 +180,181 @@ This exercise practices:
 - Table output with multiple columns
 - Annual vs. monthly rates (division by 12)
 - Stopping condition (balance reaches 0)
+
+----------------------------------
+
+## 📖 Understanding Loan Amortization: A Complete Example
+
+---
+
+### 🎯 Loan Terms (Example: $200 Purchase)
+
+| Term | Calculation | Value |
+|------|-------------|-------|
+| **Purchase Price** | User input | $200.00 |
+| **Down Payment (10%)** | $200 × 0.10 | $20.00 |
+| **Amount Financed** | $200 - $20 | $180.00 |
+| **Annual Interest Rate** | Fixed | 12% |
+| **Monthly Interest Rate** | 12% ÷ 12 | 1% (0.01) |
+| **Monthly Payment (5%)** | $200 × 0.05 | $10.00 |
+
+---
+
+### 🔄 How Each Payment Works
+
+Every month, your $10 payment is split into two parts:
+
+1. **Interest**: What the store charges for lending you money
+   - Calculated on your *remaining balance*
+   - Formula: `balance × 0.01`
+
+2. **Principal**: What actually reduces your debt
+   - Formula: `payment - interest`
+   - This is why your balance goes down each month
+
+**Key Insight:** Early on, most of your payment goes to interest. Later, most goes to principal!
+
+---
+
+### 📊 Month-by-Month Breakdown
+
+#### **Month 1: Starting Out**
+```
+Starting Balance: $180.00  (what you owe at the beginning)
+Interest Charge:  $  1.80  ($180 × 0.01 = $1.80)
+Principal Paid:   $  8.20  ($10.00 - $1.80 = $8.20)
+Payment Made:     $ 10.00  (fixed monthly payment)
+Ending Balance:   $171.80  ($180 - $8.20 = $171.80)
+                           ↑
+                    This becomes next month's starting balance
+```
+
+**Notice:** Only $8.20 of your $10 payment reduced the debt!
+
+---
+
+#### **Month 2: Building Momentum**
+```
+Starting Balance: $171.80  (last month's ending)
+Interest Charge:  $  1.72  ($171.80 × 0.01 = $1.72)
+Principal Paid:   $  8.28  ($10.00 - $1.72 = $8.28)
+Payment Made:     $ 10.00
+Ending Balance:   $163.52  ($171.80 - $8.28 = $163.52)
+```
+
+**Notice:** Interest went down (from $1.80 to $1.72), so principal went up (from $8.20 to $8.28)!
+
+---
+
+#### **Month 9: Halfway Point**
+```
+Starting Balance: $ 92.13
+Interest Charge:  $  0.92  ($92.13 × 0.01 = $0.92)
+Principal Paid:   $  9.08  ($10.00 - $0.92 = $9.08)
+Payment Made:     $ 10.00
+Ending Balance:   $ 83.05  ($92.13 - $9.08 = $83.05)
+```
+
+**Notice:** Now most of your payment ($9.08) goes to principal!
+
+---
+
+#### **Month 18: Final Payment**
+```
+Starting Balance: $ 10.00  (almost done!)
+Interest Charge:  $  0.10  ($10.00 × 0.01 = $0.10)
+Principal Paid:   $  9.90  ($10.00 - $0.10 = $9.90)
+Payment Made:     $ 10.00
+Ending Balance:   $  0.00  (PAID OFF! 🎉)
+```
+
+**Notice:** On the last payment, almost everything ($9.90) goes to principal!
+
+---
+
+### 📈 The Big Picture: Complete Amortization Schedule
+
+| Month | Starting Balance | Interest | Principal | Payment | Ending Balance |
+|-------|------------------|----------|-----------|---------|----------------|
+| 1 | $180.00 | $1.80 | $8.20 | $10.00 | $171.80 |
+| 2 | $171.80 | $1.72 | $8.28 | $10.00 | $163.52 |
+| 3 | $163.52 | $1.64 | $8.36 | $10.00 | $155.16 |
+| 4 | $155.16 | $1.55 | $8.45 | $10.00 | $146.71 |
+| 5 | $146.71 | $1.47 | $8.53 | $10.00 | $138.18 |
+| 6 | $138.18 | $1.38 | $8.62 | $10.00 | $129.56 |
+| 7 | $129.56 | $1.30 | $8.70 | $10.00 | $120.86 |
+| 8 | $120.86 | $1.21 | $8.79 | $10.00 | $112.07 |
+| 9 | $112.07 | $1.12 | $8.88 | $10.00 | $103.19 |
+| 10 | $103.19 | $1.03 | $8.97 | $10.00 | $94.22 |
+| 11 | $94.22 | $0.94 | $9.06 | $10.00 | $85.16 |
+| 12 | $85.16 | $0.85 | $9.15 | $10.00 | $76.01 |
+| 13 | $76.01 | $0.76 | $9.24 | $10.00 | $66.77 |
+| 14 | $66.77 | $0.67 | $9.33 | $10.00 | $57.44 |
+| 15 | $57.44 | $0.57 | $9.43 | $10.00 | $48.01 |
+| 16 | $48.01 | $0.48 | $9.52 | $10.00 | $38.49 |
+| 17 | $38.49 | $0.38 | $9.62 | $10.00 | $28.87 |
+| 18 | $28.87 | $0.29 | $9.71 | $10.00 | $19.16 |
+| 19 | $19.16 | $0.19 | $9.81 | $10.00 | $9.35 |
+| 20 | $9.35 | $0.09 | $9.91 | $10.00 | $0.00* |
+
+*Note: Final balance may show small rounding ($0.44 in this case requires adjustment on last payment)
+
+---
+
+### 💡 Key Observations
+
+**Interest Trends:**
+- Month 1: $1.80 interest (18% of payment)
+- Month 10: $1.03 interest (10.3% of payment)
+- Month 20: $0.09 interest (0.9% of payment)
+
+**Principal Trends:**
+- Month 1: $8.20 principal (82% of payment)
+- Month 10: $8.97 principal (89.7% of payment)
+- Month 20: $9.91 principal (99.1% of payment)
+
+**Total Interest Paid:** Sum of all interest = $19.16  
+**Total Principal Paid:** $180.00 (the original loan)  
+**Total Paid:** $199.16 ($180 + $19.16 interest)
+
+---
+
+### 🧮 Why This Happens
+
+1. **Interest is always calculated on remaining balance**
+   - As balance decreases, interest decreases
+   - Since payment is fixed, principal increases
+
+2. **Early payments are mostly interest**
+   - When you owe $180, 1% interest = $1.80
+   - Only $8.20 of your $10 goes to reducing debt
+
+3. **Later payments are mostly principal**
+   - When you owe $10, 1% interest = $0.10
+   - Now $9.90 of your $10 goes to reducing debt
+
+4. **This is called "amortization"**
+   - The gradual payoff of a loan through regular payments
+   - Each payment splits between interest and principal
+   - Balance steadily decreases to zero
+
+---
+
+### ✅ Verify Your Code
+
+Your program should produce this exact table for a $200 purchase. Check:
+
+- ✓ Exactly 20 months to pay off
+- ✓ Each month's ending = next month's starting
+- ✓ Interest = previous ending × 0.01
+- ✓ Principal = 10.00 - interest
+- ✓ All money values have exactly 2 decimals
+- ✓ Final balance reaches $0.00 (or very close with rounding)
+
+**If your numbers don't match:**
+- Check: Are you using 0.01 (monthly) not 0.12 (annual)?
+- Check: Is balance updating each month?
+- Check: Is principal = payment - interest (not balance × rate)?
+
+---
+
