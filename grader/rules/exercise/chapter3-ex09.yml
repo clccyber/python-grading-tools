@@ -5,20 +5,10 @@ timeout_seconds: 5
 
 io_tests:
   - name: three_numbers
-    stdin: |
-      1
-      2
-      3
+    stdin: "1\n2\n3\n\n"
       
   - name: five_numbers
-    stdin: |
-      10
-      20
-      30
-      40
-      50
+    stdin: "10\n20\n30\n40\n50\n\n"
       
   - name: single_number
-    stdin: |
-      42
-      
+    stdin: "42\n\n"

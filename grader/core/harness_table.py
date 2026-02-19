@@ -16,6 +16,14 @@ def extract_row_values(line, num_columns):
     Extract numeric values from a table row.
     Returns list of {'value': float, 'text': str} dicts, or None if incomplete.
     """
+    # Skip lines that are clearly separators or headers (no digits)
+    if not any(c.isdigit() for c in line):
+        return None
+    
+    # Skip lines that are mostly dashes (separator lines)
+    if line.count('-') > len(line) / 2:
+        return None
+    
     numbers = find_numbers_in_line(line)
     
     if len(numbers) < num_columns:
@@ -190,6 +198,7 @@ def grade_table(cfg, student_path):
         for line_num, line in enumerate(data_lines, start=skip_lines+1):
             row_values = extract_row_values(line, len(columns))
             if row_values:
+                rows_found.append({'line': line_num, 'values': row_values, 'text': line})
                 rows_found.append({'line': line_num, 'values': row_values, 'text': line})
         
         # Check row count

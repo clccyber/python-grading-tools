@@ -76,14 +76,16 @@ def compute_expected(ex_id, lines):
         height = f(0, float)
         index = f(1, float)
         bounces = f(2, int)
-        # Initial drop
-        distance = height
-        # For each bounce: down + up
+        
+        # Each loop iteration: fall down + bounce back up
+        distance = 0
         for _ in range(bounces):
-            height = height * index
-            distance += height * 2  # down and up
-        return {'total distance': distance}
-    
+            distance += height      # Fall down from current height
+            height = height * index # New height after bounce
+            distance += height      # Bounce back up to new height
+        
+        return {'total distance': distance}   
+
     if ex_id == 'chapter3/ex05':
         # Population growth
         initial = f(0, int)
