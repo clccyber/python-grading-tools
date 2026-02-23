@@ -199,7 +199,6 @@ def grade_table(cfg, student_path):
             row_values = extract_row_values(line, len(columns))
             if row_values:
                 rows_found.append({'line': line_num, 'values': row_values, 'text': line})
-                rows_found.append({'line': line_num, 'values': row_values, 'text': line})
         
         # Check row count
         if len(rows_found) != expected_rows:
