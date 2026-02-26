@@ -45,8 +45,8 @@ def load_config(path):
     else:
         cfg = json.loads(text)
     cfg = deep_merge(DEFAULTS, cfg)
-    if cfg.get('mode') not in ('io', 'text', 'table', 'guessing_game', 'lucky_sevens', 'file_io', 'function', 'gui_structure', 'api'):
-        raise ValueError('mode must be io, text, table, guessing_game, lucky_sevens, file_io, function, gui_structure, or api')
+    if cfg.get('mode') not in ('io', 'text', 'table', 'guessing_game', 'lucky_sevens', 'file_io', 'function', 'gui_structure', 'dual_script', 'api'):
+        raise ValueError('mode must be io, text, table, guessing_game, lucky_sevens, file_io, function, gui_structure, dual_script, or api')
     # force integer scoring
     if cfg['scoring'].get('percent_decimals',0) != 0:
         cfg['scoring']['percent_decimals'] = 0

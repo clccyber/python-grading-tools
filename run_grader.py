@@ -8,6 +8,7 @@ from core.harness_lucky_sevens import grade_lucky_sevens
 from core.harness_file_io import grade_file_io
 from core.harness_function import grade_functions
 from core.harness_gui_structure import grade_gui_structure
+from core.harness_dual_script import grade_dual_script  # NEW
 from core.reporting import write_reports
 
 def main():
@@ -36,11 +37,13 @@ def main():
         result = grade_functions(cfg, args.student_path)
     elif mode == 'gui_structure':
         result = grade_gui_structure(cfg, args.student_path)
+    elif mode == 'dual_script':  # NEW
+        result = grade_dual_script(cfg, args.student_path)
     elif mode == 'api':
         print('API mode is not implemented in this toolkit.', file=sys.stderr)
         sys.exit(2)
     else:
-        print(f'Unknown mode: {mode}. Use io, text, table, guessing_game, lucky_sevens, file_io, function, gui_structure, or api.', file=sys.stderr)
+        print(f'Unknown mode: {mode}. Use io, text, table, guessing_game, lucky_sevens, file_io, function, gui_structure, dual_script, or api.', file=sys.stderr)
         sys.exit(2)
     
     write_reports(result, args.out)

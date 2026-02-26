@@ -1,4 +1,4 @@
-# Grading Rubric: Chapter 3, Exercise 3
+1) 1) 1) # Grading Rubric: Chapter 3, Exercise 3
 ## Computer Guessing Game with Cheating Detection 🎯
 
 ---
@@ -6,6 +6,8 @@
 ## 📋 What You're Building
 
 A program where **the computer guesses your number** using binary search:
+
+- This is based on the guessing game in the "Random Numbers" section of Chapter 3, but with the roles reversed between the user and the computer
 - User thinks of a number in a range
 - Computer guesses using optimal strategy (binary search)
 - User responds with `<` (lower), `>` (higher), or `=` (correct)

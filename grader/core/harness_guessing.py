@@ -42,8 +42,8 @@ def simulate_guessing_game(student_path, entrypoint, case, timeout=10):
                 try:
                     # Read until we see a guess or game ends
                     index = proc.expect([
-                        r'Your number is (\d+)',
-                        r'your number is (\d+)',
+                        r'Your number is\s+(\d+)',
+                        r'your number is\s+(\d+)',
                         r'Hooray',
                         r'hooray',
                         r'cheat',
