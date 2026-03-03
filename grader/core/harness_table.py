@@ -108,20 +108,28 @@ def compute_expected_table_row(ex_id, inputs, row_num, columns):
         down_payment = purchase * 0.10
         balance = purchase - down_payment
         monthly_payment = purchase * 0.05
-        annual_rate = 0.12
-        
+        rate = 0.12 / 12
+
         # Simulate up to the requested row
         for month in range(1, row_num + 1):
             starting_balance = balance
-            interest = balance * (annual_rate / 12)
-            principal = monthly_payment - interest
+            interest = balance * rate
+
+            # Final payment: only charge what's actually owed
+            if balance + interest <= monthly_payment:
+                payment = balance + interest
+                principal = balance
+            else:
+                payment = monthly_payment
+                principal = payment - interest
+
             ending_balance = balance - principal
-            
+
             if month == row_num:
-                return [month, starting_balance, interest, principal, monthly_payment, ending_balance]
-            
+                return [month, starting_balance, interest, principal, payment, ending_balance]
+
             balance = ending_balance
-        
+
         return []
     
     return []
@@ -212,7 +220,9 @@ def grade_table(cfg, student_path):
         # Points per cell
         total_cells = expected_rows * len(columns)
         points_per_cell_numeric = total_numeric / total_cells
-        points_per_cell_format = total_format / total_cells
+        format_columns = [c for c in columns if 'decimals' in c.get('format', {})]
+        format_cells = expected_rows * max(1, len(format_columns))
+        points_per_cell_format = total_format / format_cells
         
         # Check each row
         for row_idx, row_data in enumerate(rows_found):
@@ -272,7 +282,7 @@ def grade_table(cfg, student_path):
                         })
     
     def finalize(task, earned):
-        task['earned'] = min(task['max'], earned)
+        task['earned'] = min(task['max'], round(earned, 10))
         task['status'] = 'pass' if task['earned'] == task['max'] else ('partial' if task['earned']>0 else 'fail')
     
     for task in tasks:

@@ -50,7 +50,7 @@ Starting balance: 180.00 (200 - 20 down)
 Interest: 180 * 0.01 = 1.80
 Principal: 10 - 1.80 = 8.20
 Payment: 10.00
-Ending: 180 - 8.20 = 170.00
+Ending: 180 - 8.20 = 171.80
 ```
 
 ---
@@ -67,11 +67,11 @@ Your program should:
 ```
 Enter the purchase price: 200
 Month  Starting Balance  Interest to Pay  Principal to Pay  Payment  Ending Balance
- 1         180.00           1.80             8.20            10.00           170.00
- 2         170.00           1.70             8.30            10.00           160.00
- 3         160.00           1.60             8.40            10.00           150.00
+ 1         180.00           1.80             8.20            10.00        171.80
+ 2         171.80           1.72             8.28            10.00        163.52
+ 3         163.52           1.64             8.36            10.00        155.16
 ...
-18          10.00           0.10             9.90            10.00             0.00
+20           9.35           0.09             9.91            10.00          0.00
 ```
 
 ---
@@ -99,7 +99,7 @@ The grader checks **each cell** in the table:
 | Using annual rate instead of monthly | -60 | Interest = balance × (0.12/12), not × 0.12 |
 | Not updating balance each month | -60 | Next month uses previous ending balance |
 | Wrong principal calculation | Up to -60 | principal = payment - interest |
-| Fixed number of months | Variable | Loop should continue until balance = 0 |
+| Fixed number of months | Variable | Loop should continue until balance = 0 (20 months for $200) |
 | Not 2 decimals | Up to -20 | All money needs .XX format |
 | Missing headers | -10 | Table needs column names |
 
@@ -109,7 +109,7 @@ The grader checks **each cell** in the table:
 
 1. **Monthly rate is annual/12**: 12% per year = 1% per month = 0.01
 2. **Balance updates each iteration**: ending becomes next starting
-3. **Loop until balance ≤ 0**: Don't hardcode 18 months
+3. **Loop until balance ≤ 0**: Don't hardcode 20 months
 4. **Principal = payment - interest**: NOT balance × something
 5. **Format ALL money with 2 decimals**: Every column except month
 
@@ -142,14 +142,14 @@ while balance > 0:
 interest = balance * 0.12  # Should be 0.12/12
 
 # Wrong - not updating balance
-for month in range(18):
+for month in range(20):
     interest = balance * rate  # balance never changes!
 
 # Wrong - principal calculation
 principal = balance * rate  # Should be payment - interest
 
 # Wrong - hardcoded months
-for month in range(1, 19):  # Should loop until balance = 0
+for month in range(1, 21):  # Should loop until balance = 0
 ```
 
 ---
@@ -164,9 +164,9 @@ From the `student/` directory:
 Check your report in `../report_ex10/report.txt`
 
 **Verify with example ($200 purchase):**
-- Month 1: Starting $180, Interest $1.80, Principal $8.20, Ending $170
-- Month 18: Starting $10, Interest $0.10, Principal $9.90, Ending $0
-- Should take exactly 18 months
+- Month 1: Starting $180.00, Interest $1.80, Principal $8.20, Ending $171.80
+- Month 20: Starting $9.35, Interest $0.09, Principal $9.91, Ending $0.00
+- Should take exactly 20 months
 
 ---
 
@@ -221,10 +221,10 @@ Every month, your $10 payment is split into two parts:
 #### **Month 1: Starting Out**
 ```
 Starting Balance: $180.00  (what you owe at the beginning)
-Interest Charge:  $  1.80  ($180 × 0.01 = $1.80)
+Interest Charge:  $  1.80  ($180.00 × 0.01 = $1.80)
 Principal Paid:   $  8.20  ($10.00 - $1.80 = $8.20)
 Payment Made:     $ 10.00  (fixed monthly payment)
-Ending Balance:   $171.80  ($180 - $8.20 = $171.80)
+Ending Balance:   $171.80  ($180.00 - $8.20 = $171.80)
                            ↑
                     This becomes next month's starting balance
 ```
@@ -246,29 +246,29 @@ Ending Balance:   $163.52  ($171.80 - $8.28 = $163.52)
 
 ---
 
-#### **Month 9: Halfway Point**
+#### **Month 10: Approaching Halfway**
 ```
-Starting Balance: $ 92.13
-Interest Charge:  $  0.92  ($92.13 × 0.01 = $0.92)
-Principal Paid:   $  9.08  ($10.00 - $0.92 = $9.08)
+Starting Balance: $ 94.22
+Interest Charge:  $  0.94  ($94.22 × 0.01 = $0.94)
+Principal Paid:   $  9.06  ($10.00 - $0.94 = $9.06)
 Payment Made:     $ 10.00
-Ending Balance:   $ 83.05  ($92.13 - $9.08 = $83.05)
+Ending Balance:   $ 85.16  ($94.22 - $9.06 = $85.16)
 ```
 
-**Notice:** Now most of your payment ($9.08) goes to principal!
+**Notice:** Now most of your payment ($9.06) goes to principal!
 
 ---
 
-#### **Month 18: Final Payment**
+#### **Month 20: Final Payment**
 ```
-Starting Balance: $ 10.00  (almost done!)
-Interest Charge:  $  0.10  ($10.00 × 0.01 = $0.10)
-Principal Paid:   $  9.90  ($10.00 - $0.10 = $9.90)
-Payment Made:     $ 10.00
+Starting Balance: $  9.35  (almost done!)
+Interest Charge:  $  0.09  ($9.35 × 0.01 = $0.09)
+Principal Paid:   $  9.91  ($10.00 - $0.09 = $9.91)
+Payment Made:     $ 10.00 (or adjusted for last payment)
 Ending Balance:   $  0.00  (PAID OFF! 🎉)
 ```
 
-**Notice:** On the last payment, almost everything ($9.90) goes to principal!
+**Notice:** On the last payment, almost everything ($9.91) goes to principal!
 
 ---
 
@@ -295,9 +295,7 @@ Ending Balance:   $  0.00  (PAID OFF! 🎉)
 | 17 | $38.49 | $0.38 | $9.62 | $10.00 | $28.87 |
 | 18 | $28.87 | $0.29 | $9.71 | $10.00 | $19.16 |
 | 19 | $19.16 | $0.19 | $9.81 | $10.00 | $9.35 |
-| 20 | $9.35 | $0.09 | $9.91 | $10.00 | $0.00* |
-
-*Note: Final balance may show small rounding ($0.44 in this case requires adjustment on last payment)
+| 20 | $9.35 | $0.09 | $9.91 | $10.00 | $0.00 |
 
 ---
 
@@ -313,9 +311,9 @@ Ending Balance:   $  0.00  (PAID OFF! 🎉)
 - Month 10: $8.97 principal (89.7% of payment)
 - Month 20: $9.91 principal (99.1% of payment)
 
-**Total Interest Paid:** Sum of all interest = $19.16  
+**Total Interest Paid:** Sum of all interest = $19.44  
 **Total Principal Paid:** $180.00 (the original loan)  
-**Total Paid:** $199.16 ($180 + $19.16 interest)
+**Total Paid:** $199.44 ($180 + $19.44 interest)
 
 ---
 
@@ -330,8 +328,8 @@ Ending Balance:   $  0.00  (PAID OFF! 🎉)
    - Only $8.20 of your $10 goes to reducing debt
 
 3. **Later payments are mostly principal**
-   - When you owe $10, 1% interest = $0.10
-   - Now $9.90 of your $10 goes to reducing debt
+   - When you owe $9.35, 1% interest = $0.09
+   - Now $9.91 of your $10 goes to reducing debt
 
 4. **This is called "amortization"**
    - The gradual payoff of a loan through regular payments
@@ -345,16 +343,17 @@ Ending Balance:   $  0.00  (PAID OFF! 🎉)
 Your program should produce this exact table for a $200 purchase. Check:
 
 - ✓ Exactly 20 months to pay off
+- ✓ Month 1 ending balance = $171.80
 - ✓ Each month's ending = next month's starting
 - ✓ Interest = previous ending × 0.01
 - ✓ Principal = 10.00 - interest
 - ✓ All money values have exactly 2 decimals
-- ✓ Final balance reaches $0.00 (or very close with rounding)
+- ✓ Final balance reaches $0.00
 
 **If your numbers don't match:**
 - Check: Are you using 0.01 (monthly) not 0.12 (annual)?
 - Check: Is balance updating each month?
 - Check: Is principal = payment - interest (not balance × rate)?
+- Check: Is Month 1 ending $171.80 (not $170.00)?
 
 ---
-
